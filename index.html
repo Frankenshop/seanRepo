@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<title>Test your password strength!</title>
+<script>
+$(document).ready(function() {
+	
+	//values for responses
+	var passin1 = 0;
+	var passin2 = 1;
+	var passin3 = 2;
+	var passin4 = 3;
+	
+	//responses
+	var passout1 = "Your password is weak like baby";
+	var passout2 = "I can fart better password";
+	var passout3 = "Your password is good, but STILL too weak";
+	var passout4 = "Is great password!";
+	
+	$("#submit").click(function(){
+		var passwordStrength = 0;
+		//not needed anymore
+		var response = $("#passoutput").val();
+		if (response.length > 7) { 
+			var containsDigits = /[0-9]/.test(response); //test the response for a number
+			var containsUpper = /[A-Z]/.test(response);//test response for CAPITAL
+			var containsLower = /[a-z]/.test(response); //test for lower
+			if (containsDigits == true)
+			  passwordStrength = passwordStrength + 1; //adds a level to the response
+			if (containsUpper == true)
+			  passwordStrength = passwordStrength + 1;
+			if (containsLower == true)
+			  passwordStrength = passwordStrength + 1;
+		}
+		
+		if(passwordStrength == passin1){
+			$("#response").html(passout1);
+			$("#response").removeClass();
+			$("#response").addClass("image1");
+		}
+		if(passwordStrength == passin2){
+			$("#response").html(passout2);
+			$("#response").removeClass();
+			$("#response").addClass("image2");
+		}
+		if(passwordStrength == passin3){
+			$("#response").html(passout3);
+			$("#response").removeClass();
+			$("#response").addClass("image3");
+		}
+		if(passwordStrength == passin4){
+			$("#response").html(passout4);
+			$("#response").removeClass();
+			$("#response").addClass("image4");
+		}
+		//console.log("clicked!"); not needed
+	});
+	
+	
+});
+</script>
+<style type="text/css">
+
+
+body {
+	background-color: #f4eee6;
+}
+
+#container {
+width: 100%;
+}
+
+#PasswordTester {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 20px;
+	font-style: normal;
+	color: #2E1D0A;
+	background-image: url(images/Backgroundforassetdesign.png);
+	text-align: center;
+	height: 600px;
+	width: 800px;
+	margin:30px auto 0;
+	font-weight: bold;
+}
+
+#jqueryselector {
+	margin-left: 40%;
+	padding-top: 25%;
+}
+
+
+#submit {
+	margin-bottom: 25px;
+}
+
+.image1 {
+	background-image: url(images/weak.png);
+	background-repeat: no-repeat;
+	height: 120px;
+	background-position: center 20px;
+}
+
+.image2 {
+	background-image: url(images/poor.png);
+	background-repeat: no-repeat;
+	height: 120px;
+	background-position: center 20px;
+}
+
+.image3 {
+	background-image: url(images/average.png);
+	background-repeat: no-repeat;
+	height: 120px;
+	background-position: center 20px;
+}
+
+.image4 {
+	background-image: url(images/strong.png);
+	background-repeat: no-repeat;
+	height: 120px;
+	background-position: center 20px;
+}
+</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="PasswordTester">
+    
+    	<div id="jqueryselector">
+			<div id="passinput">Test your password strength!</div>
+            <br />
+			<input type="password" id="passoutput" value="I dare you!" />
+			<input type="button" id="submit" value="Try me" />
+            <div id="response"></div>
+  		</div> <!-- close jqueryselector -->
+    
+		</div> <!-- Closes PasswordTester-->
+    </div> <!-- Closes container -->
+</body>
+</html>
